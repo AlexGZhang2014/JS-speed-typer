@@ -10,7 +10,7 @@ const levels = {
 }
 
 // To change the level
-const currentLevel = levels.hard;
+const currentLevel = levels.easy;
 
 let time = currentLevel;
 let score = 0;
@@ -22,6 +22,9 @@ const scoreDisplay = document.querySelector('#score');
 const timeDisplay = document.querySelector('#time');
 const message = document.querySelector('#message');
 const seconds = document.querySelector('#seconds');
+const easyMode = document.querySelector('#easyMode');
+const mediumMode = document.querySelector('#mediumMode');
+const hardMode = document.querySelector('#hardMode');
 
 const words = [
   'horchata',
@@ -73,6 +76,10 @@ function init() {
   setInterval(countdown, 1000);
   // Check game status
   setInterval(checkStatus, 50);
+  // Allow user to set level
+  easyMode.addEventListener('click', changeLevel(e));
+  mediumMode.addEventListener('click', changeLevel(e));
+  hardMode.addEventListener('click', changeLevel(e));
 }
 
 // Start match
@@ -131,5 +138,16 @@ function checkStatus() {
   if (!isPlaying && time === 0) {
     message.innerHTML = 'Game Over!';
     score = -1;
+  }
+}
+
+//Change the difficulty level
+function changeLevel(e) {
+  if (e.value === 'Easy') {
+    currentLevel = levels.easy;
+  } else if (e.value === 'Medium') {
+    currentLevel = levels.medium;
+  } else if (e.value === 'Hard') {
+    currentLevel = levels.hard;
   }
 }
