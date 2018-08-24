@@ -52,5 +52,30 @@ const words = [
 
 // Initialize Game
 function init() {
-  console.log('init');
+  // Load random word from array
+  showWord(words);
+  // Call countdown every second
+  setInterval(countdown, 1000);
+}
+
+// Pick & show random word
+function showWord(words) {
+  // Generate random array index
+  const randomIndex = Math.floor(Math.random() * words.length);
+  // Output random word
+  currentWord.innerHTML = words[randomIndex];
+}
+
+// Countdown timer
+function countdown() {
+  // Make sure time is not run out
+  if (time > 0) {
+    // Decrease the timeout
+    time--;
+  } else if (time === 0) {
+    // Game is over
+    isPlaying = false;
+  }
+  // Show time
+  timeDisplay.innerHTML = time;
 }
